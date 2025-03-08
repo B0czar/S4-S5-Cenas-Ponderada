@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>ponderada maluca Yuri - Tela Inicial</title>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                height: 100vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                font-family: sans-serif;
+                color: #fff;
+                /* Fundo psicodélico com gradiente animado */
+                background: linear-gradient(
+                    45deg,
+                    #ff0000,
+                    #00ff00,
+                    #0000ff,
+                    #ff00ff
+                );
+                background-size: 400% 400%;
+                animation: gradientAnimation 10s ease infinite;
+                overflow: hidden;
+            }
+
+            @keyframes gradientAnimation {
+                0% {
+                    background-position: 0% 50%;
+                }
+                50% {
+                    background-position: 100% 50%;
+                }
+                100% {
+                    background-position: 0% 50%;
+                }
+            }
+
+            /* Animação para textos se mexendo */
+            @keyframes textMove {
+                0% {
+                    transform: translate(0, 0) rotate(0deg);
+                }
+                25% {
+                    transform: translate(5px, -5px) rotate(1deg);
+                }
+                50% {
+                    transform: translate(0, -10px) rotate(-1deg);
+                }
+                75% {
+                    transform: translate(-5px, -5px) rotate(1deg);
+                }
+                100% {
+                    transform: translate(0, 0) rotate(0deg);
+                }
+            }
+
+            h1,
+            #startBtn {
+                animation: textMove 3s infinite;
+            }
+
+            h1 {
+                text-align: center;
+                margin-bottom: 20px;
+                font-size: 1.5em;
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+                max-width: 90%;
+            }
+
+            #startBtn {
+                padding: 15px 30px;
+                font-size: 1.2em;
+                border: none;
+                border-radius: 10px;
+                background-color: rgba(0, 0, 0, 0.5);
+                color: #fff;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+
+            #startBtn:hover {
+                background-color: rgba(0, 0, 0, 0.7);
+            }
+        </style>
+    </head>
+    <body>
+        <h1>
+            ponderada maluca Yuri (não sei o que estou fazendo, acabei de voltar
+            do carnaval)
+        </h1>
+        <button id="startBtn">Começar o Jogo (espere a musica começar)</button>
+
+        <!-- Elemento de áudio para a música de fundo -->
+        <audio id="bgMusic" src="../assets/Macetando.mp3.mp3" loop></audio>
+
+        <!-- Biblioteca para efeito de confetti -->
+        <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
+        <script>
+            // Efeito contínuo de confetti com variações psicodélicas
+            setInterval(function () {
+                confetti({
+                    particleCount: Math.floor(Math.random() * 5) + 3, // entre 3 e 7 partículas
+                    startVelocity: Math.random() * 30 + 10,
+                    spread: Math.random() * 100 + 50,
+                    origin: { x: Math.random(), y: 0 },
+                    colors: [
+                        "#ff0000",
+                        "#00ff00",
+                        "#0000ff",
+                        "#ff00ff",
+                        "#ffff00",
+                        "#00ffff",
+                    ],
+                });
+            }, 150);
+
+            // Redireciona para fase1.html ao clicar no botão
+            document
+                .getElementById("startBtn")
+                .addEventListener("click", function () {
+                    window.location.href = "fase1.html";
+                });
+
+            // Play background music when the page loads
+            window.addEventListener("load", function () {
+                var bgMusic = document.getElementById("bgMusic");
+                bgMusic.play().catch(function (error) {
+                    console.log("Autoplay was prevented. Click to play music.");
+                });
+
+                // Allow music to play on user interaction if autoplay was prevented
+                document.body.addEventListener("click", function () {
+                    bgMusic.play();
+                });
+            });
+        </script>
+    </body>
+</html>
