@@ -59,14 +59,14 @@ $(document).ready(function () {
 function preload() {
     this.load.image("sky", "../assets/sky.png");
     this.load.image("ground", "../assets/platform.png");
-    this.load.image("star", "../assets/star.png");
+    this.load.image("star", "../assets/beer.png");
     this.load.image("bomb", "../assets/bomb.png");
     this.load.spritesheet("dude", "../assets/dude.png", {
         frameWidth: 32,
         frameHeight: 48,
     });
     this.load.audio("gameOverMusic", "../assets/Macetando.mp3.mp3");
-    this.load.audio("musicaTema", "../assets/babyshark.mp3");
+    this.load.audio("musicaTema", "../assets/crowd.mp3");
 }
 
 // Create game objects
@@ -75,9 +75,10 @@ function create() {
     this.add.image(400, 300, "sky");
     this.add.image(400, 300, "star").visible = false;
 
-   /* // Play background music
+    // Play background music
     var musicBaby = this.sound.add("musicaTema");
-    musicBaby.play({ loop: true });*/
+    musicBaby.play({ loop: true });
+    musicBaby.setVolume(0.3);
 
     // Create platforms
     platforms = this.physics.add.staticGroup();
